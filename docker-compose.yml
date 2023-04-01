@@ -1,0 +1,27 @@
+version: '3'
+services:
+  auth-service:
+    build:
+      context: ../auth-service
+    volumes:
+      - /app/node_modules
+      - ../auth-service:/app
+    ports:
+      - '4050:4050'
+  client:
+    stdin_open: true
+    build:
+      context: ../fighting-client
+    volumes:
+      - /app/node_modules
+      - ../fighting-client:/app
+    ports:
+      - '3010:3000'
+  data-service:
+    build:
+      context: ../fighting-data-service
+    volumes:
+      - /app/node_modules
+      - ../fighting-data-service:/app
+    ports:
+      - '4060:4060'
